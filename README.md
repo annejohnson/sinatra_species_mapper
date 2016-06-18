@@ -19,6 +19,8 @@ This app contains some code that we may want to share across different projects 
 
 ## Creating a GbifClient Gem with Bundler
 
+### Creating and Exploring the Empty Gem
+
 ```
 bundle gem gbif_client
 ```
@@ -54,7 +56,9 @@ bin/console
 
 ---
 
-Write failing tests for GbifClient and run `rake spec`.
+### Make Your Gem Do Something!
+
+Write failing tests for the `GbifClient` class and run `rake spec`.
 
 Get your tests passing by moving the `GbifClient` code into the `lib/gbif_client.rb` file, as well as the lines to `require 'json'` and `require 'net/http'`.
 
@@ -64,9 +68,13 @@ Push your shiny new gem to Github!
 
 ---
 
+### Use Your Gem in the Outside World
+
 Return to this species mapper project.
 
 Add the new gem to the `Gemfile` and run `bundle install`.
+
+  - **Hint**: Read [Bundler guide: Gems from Git Repositories](http://bundler.io/git.html)
 
 Remove the `GbifApi` class from `app.rb`. Replace with a `require 'gbif_api'` line.
 
@@ -74,17 +82,23 @@ Re-start the app, and see it powered by your new gem!
 
 ---
 
-Let’s go back to the gem code and add a new feature. Let's return the dates as part of the `get_species_occurrences` method.
+### Add New Functionality to the Gem
 
-Create a failing test for the new feature (`rake spec`).
+Let’s go back to the gem code and add a new feature. Let's return the dates as part of the `GbifClient#get_species_occurrences` method.
 
-Update the `get_species_occurrences` to return a `date` key.
+Create a failing test for the new feature.
+
+Update the `GbifClient#get_species_occurrences` to return a `date` key.
+
+  - **Hints**: add `require 'date'` and `result['eventDate'] ? Date.parse(result['eventDate']) : nil`
 
 Make sure test now passes (`rake spec`)
 
 Commit!
 
 ---
+
+### Release a New Gem Version
 
 With our new feature in place, let’s bump the gem version!
 
@@ -96,8 +110,12 @@ Make a Github release.
 
 ---
 
+### Using the New Version in the Outside World
+
 Go back to the species mapper code. Update its `Gemfile` to use the latest and greatest version of the `gbif_client` gem, and run `bundle install`.
 
 ---
 
-Congratulations! You are now the proud creator of a fabulous gem.
+## Congratulations! 🎉
+
+You are now the proud creator of a fabulous gem.
