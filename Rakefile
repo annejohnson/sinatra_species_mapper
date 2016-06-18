@@ -1,3 +1,3 @@
 task :default do
-  system("rerun 'ruby app.rb'")
+  system("rerun 'bundle exec ruby app.rb'")
 end
