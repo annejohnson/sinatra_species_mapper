@@ -1,12 +1,14 @@
-<form class="search-form pure-form" autocomplete="off" style="text-align: center">
+<form class="search-form pure-form" autocomplete="off">
   <fieldset>
     <legend>
-      Type your favorite animal species below:
+      Type your favorite animal below:
     </legend>
 
-    <input type="text" name="species" placeholder="Homo sapiens">
+    <input type="text" name="commonName" placeholder="Water buffalo">
 
     <button type="submit" class="pure-button pure-button-primary">Go</button>
+
+    <span class="message-container"></span>
   </fieldset>
 </form>
 
@@ -41,17 +43,26 @@
     $(".search-form").submit(function(e) {
       e.preventDefault();
 
-      var species = $(this).find("input").val();
+      var commonName = $(this).find("input").val();
 
       var $button = $(this).find("button");
       $button.text("Loading...");
+      var $messageContainer = $(this).find(".message-container");
+      $messageContainer.text("");
 
-      $.get("/search.json", { species: species })
+      $.get("/search.json", { commonName: commonName })
        .done(function(results) {
          clearMarkers();
-         JSON.parse(results).map(function(result) {
+         results = JSON.parse(results)
+         results.map(function(result) {
            addMarker(result["latitude"], result["longitude"]);
          });
+         var message = (results && results[0]) ?
+           "Showing results for " + (results[0].common_name || results[0].species_name) + "." :
+           "No results found for " + commonName + ".";
+         $messageContainer.text(message);
+       })
+       .always(function() {
          $button.text("Go");
        });
     });
