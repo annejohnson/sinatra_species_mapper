@@ -30,7 +30,7 @@ class GbifClient
 end
 
 get '/' do
-  erb :index
+  erb :index, layout: :main
 end
 
 get '/search.json' do
