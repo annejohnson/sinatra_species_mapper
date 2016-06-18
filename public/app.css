@@ -1,0 +1,11 @@
+.search-form {
+  padding: 8px 0 0 10px;
+}
+
+button {
+  margin: 0 6px;
+}
+
+#species-map {
+  height: 500px;
+}
