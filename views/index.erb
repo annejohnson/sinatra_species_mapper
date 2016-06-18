@@ -17,7 +17,7 @@
 <script type="text/javascript">
   $(document).ready(function() {
     var initializeMap = function(idString) {
-      var mymap = L.map(idString).setView([0, 0], 2);
+      var mymap = L.map(idString, { zoomControl: false }).setView([0, 0], 2);
       L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/roads/x={x}&y={y}&z={z}', {
         minZoom: 2,
         maxZoom: 4,
