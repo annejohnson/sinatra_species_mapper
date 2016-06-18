@@ -34,7 +34,8 @@ get '/' do
 end
 
 get '/search.json' do
-  data = GbifClient.new.get_occurrences(params['species']).map do |occurrence|
+  occurrences = GbifClient.new.get_occurrences(params['species'])
+  lat_long_data = occurrences.map do |occurrence|
     {
       species: occurrence['species'],
       latitude: occurrence['decimalLatitude'],
@@ -42,5 +43,5 @@ get '/search.json' do
     }
   end
 
-  data.to_json
+  lat_long_data.to_json
 end
