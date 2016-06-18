@@ -58,12 +58,16 @@
 
           var species = $(this).find("input").val();
 
+          var $button = $(this).find("button");
+          $button.text("Loading...");
+
           $.get("/search.json", { species: species })
            .done(function(results) {
              clearMarkers();
              JSON.parse(results).map(function(result) {
                addMarker(result["latitude"], result["longitude"]);
              });
+             $button.text("Go");
            });
         });
       });

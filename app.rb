@@ -6,7 +6,7 @@ class GbifClient
   def get_occurrences(species_name)
     begin
       JSON.parse(
-        Net::HTTP.get(base_url, search_path(species_name))
+        make_search_request(species_name)
       )['results']
     rescue
       []
@@ -15,13 +15,17 @@ class GbifClient
 
   private
 
+  def make_search_request(species_name)
+    Net::HTTP.get(base_url, search_path(species_name))
+  end
+
   def base_url
     'api.gbif.org'
   end
 
   def search_path(search_term)
     '/v1/occurrence/search?' +
-      URI.encode_www_form('scientificName' => search_term)
+      URI.encode_www_form('scientificName' => search_term, limit: 50)
   end
 end
 
