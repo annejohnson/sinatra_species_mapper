@@ -4,7 +4,7 @@ This is an app that queries the [GBIF](http://www.gbif.org/) API for information
 
 This app contains some code that we may want to share across different projects someday: code to query the GBIF API. Let's extract that code into a Ruby gem!
 
-## Guides for Creating Ruby Gems 
+## Guides for Creating Ruby Gems
 
 1. [Ruby Gems](http://guides.rubygems.org/make-your-own-gem/#your-first-gem)
 
