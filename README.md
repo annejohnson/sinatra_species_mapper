@@ -100,7 +100,7 @@ Create a failing test for the new feature.
 
 Update the `GbifClient#get_species_occurrences` to return a `date` key.
 
-  - **Hints**: add `require 'date'` and `result['eventDate'] ? Date.parse(result['eventDate']) : nil`
+  - **Hints**: add the line `date: result['eventDate'],` somewhere
 
 Make sure test now passes (`rake spec`)
 
